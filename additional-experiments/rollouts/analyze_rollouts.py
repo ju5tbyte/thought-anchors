@@ -13,9 +13,11 @@ from transformers import AutoTokenizer
 from openai import OpenAI
 from dotenv import load_dotenv
 
-# Ensure this script's own directory is on sys.path so utils_datasets is importable
-# when running from the project root (e.g. python additional-experiments/rollouts/analyze_rollouts.py)
-sys.path.insert(0, str(Path(__file__).resolve().parent))
+# Add both this script's directory (for utils_datasets) and the project root (for utils, prompts)
+_this_dir = Path(__file__).resolve().parent
+_root_dir = _this_dir.parent.parent
+sys.path.insert(0, str(_this_dir))
+sys.path.insert(0, str(_root_dir))
 
 from prompts import DAG_PROMPT
 from utils_datasets import DATASET_DAG_PROMPTS

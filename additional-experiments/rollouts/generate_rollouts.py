@@ -11,9 +11,11 @@ from pathlib import Path
 from typing import List, Dict
 from dotenv import load_dotenv
 
-# Ensure this script's own directory is on sys.path so utils_datasets is importable
-# when running from the project root (e.g. python additional-experiments/rollouts/generate_rollouts.py)
-sys.path.insert(0, str(Path(__file__).resolve().parent))
+# Add both this script's directory (for utils_datasets) and the project root (for utils, prompts)
+_this_dir = Path(__file__).resolve().parent
+_root_dir = _this_dir.parent.parent
+sys.path.insert(0, str(_this_dir))
+sys.path.insert(0, str(_root_dir))
 
 from utils import split_solution_into_chunks
 from utils_datasets import get_dataset_config
