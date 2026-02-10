@@ -1,4 +1,5 @@
 import os
+import sys
 import json
 import argparse
 import numpy as np
@@ -11,6 +12,11 @@ from tqdm import tqdm
 from transformers import AutoTokenizer
 from openai import OpenAI
 from dotenv import load_dotenv
+
+# Ensure this script's own directory is on sys.path so utils_datasets is importable
+# when running from the project root (e.g. python additional-experiments/rollouts/analyze_rollouts.py)
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
 from prompts import DAG_PROMPT
 from utils_datasets import DATASET_DAG_PROMPTS
 import re

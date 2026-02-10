@@ -1,4 +1,5 @@
 import os
+import sys
 import json
 import random
 import numpy as np
@@ -9,6 +10,11 @@ from tqdm import tqdm
 from pathlib import Path
 from typing import List, Dict
 from dotenv import load_dotenv
+
+# Ensure this script's own directory is on sys.path so utils_datasets is importable
+# when running from the project root (e.g. python additional-experiments/rollouts/generate_rollouts.py)
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
 from utils import split_solution_into_chunks
 from utils_datasets import get_dataset_config
 from transformers import TextStreamer
