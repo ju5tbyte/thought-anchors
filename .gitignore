@@ -7,6 +7,7 @@
 *.csv
 *.lock
 plots/*
+temp/
 math-rollouts/
 math-rollouts_test/
 .cursorindexingignore
