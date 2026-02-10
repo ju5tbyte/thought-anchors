@@ -99,6 +99,7 @@ if args.provider == "Local":
             model=model,
             dtype="float16",
             tensor_parallel_size=args.num_gpus,
+            max_model_len=args.max_tokens,
         )
         print("Local model loaded successfully")
     except Exception as e:
@@ -652,7 +653,8 @@ async def process_problem(problem_idx: int, problem: Dict) -> None:
                     
                     # Create the rollout object
                     prefix_without_chunk = full_prefix.replace(chunk, "").strip()
-                    chunk_resampled = split_solution_into_chunks(rollout_text)[0] if rollout_text else ""
+                    chunks = split_solution_into_chunks(rollout_text) if rollout_text else []
+                    chunk_resampled = chunks[0] if chunks else rollout_text
                     
                     # Extract answer and check correctness
                     prompt = prompts[i]
