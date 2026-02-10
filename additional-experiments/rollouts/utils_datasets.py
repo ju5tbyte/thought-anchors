@@ -272,7 +272,10 @@ def load_strategyqa_problems(
     try:
         from datasets import load_dataset
 
-        dataset = load_dataset("wics/strategy-qa")
+        dataset = load_dataset(
+            "json",
+            data_files="https://raw.githubusercontent.com/wicsaax/strategy-qa/main/strategyQA_train.json",
+        )
     except Exception as e:
         print(f"Error loading StrategyQA dataset: {e}")
         return []

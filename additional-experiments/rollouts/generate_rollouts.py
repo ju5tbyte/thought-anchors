@@ -19,7 +19,7 @@ sys.path.insert(0, str(_root_dir))
 
 from utils import split_solution_into_chunks
 from utils_datasets import get_dataset_config
-from transformers import TextStreamer
+from vllm import LLM, SamplingParams
 
 # Load environment variables
 load_dotenv()
@@ -61,7 +61,7 @@ parser.add_argument('-rp', '--repetition_penalty', type=float, default=None, hel
 parser.add_argument('-tk', '--top_k', type=int, default=None, help='Top-k parameter')
 parser.add_argument('-mp', '--min_p', type=float, default=None, help='Min-p parameter')
 parser.add_argument('-sr', '--skip_recalculate', default=False, action='store_true', help='Skip recalculating accuracy for existing rollouts')
-parser.add_argument('-q', '--quantize', default=False, action='store_true', help='Use quantization for local model')
+parser.add_argument('-ng', '--num_gpus', type=int, default=1, help='Number of GPUs for tensor parallelism (Local provider only)')
 parser.add_argument('-bs', '--batch_size', type=int, default=8, help='Batch size for local model')
 parser.add_argument('-mr', '--max_retries', type=int, default=1, help='Maximum number of retries for API requests')
 parser.add_argument('-os', '--output_suffix', type=str, default=None, help='Suffix to add to the output directory')
@@ -89,88 +89,41 @@ if torch.cuda.is_available():
 
 # Load local model if using Local provider
 local_model = None
-local_tokenizer = None
 
 if args.provider == "Local":
     try:
         print(f"Loading local model: {args.model}")
         model = args.model.replace("deepseek/", "deepseek-ai/") # Slight adjustment we need to make
-        from transformers import AutoModelForCausalLM, AutoTokenizer
-        
-        # Load tokenizer
-        local_tokenizer = AutoTokenizer.from_pretrained(model)
-        
-        # Load model with quantization if specified
-        if args.quantize and torch.cuda.is_available():
-            from transformers import BitsAndBytesConfig
-            
-            quantization_config = BitsAndBytesConfig(
-                load_in_4bit=True,
-                bnb_4bit_compute_dtype=torch.float16,
-                bnb_4bit_quant_type="nf4",
-                bnb_4bit_use_double_quant=True
-            )
-            
-            local_model = AutoModelForCausalLM.from_pretrained(
-                model,
-                device_map="auto",
-                quantization_config=quantization_config,
-                torch_dtype=torch.float16,
-            )
-        else:
-            local_model = AutoModelForCausalLM.from_pretrained(
-                model,
-                device_map="auto" if torch.cuda.is_available() else None,
-                torch_dtype=torch.float16 if torch.cuda.is_available() else None
-            )
-        
+
+        local_model = LLM(
+            model=model,
+            dtype="float16",
+            tensor_parallel_size=args.num_gpus,
+        )
         print("Local model loaded successfully")
-        local_model.eval()
     except Exception as e:
         print(f"Error loading local model: {e}")
         exit(1)
 
+def _build_sampling_params(temperature: float, top_p: float, max_tokens: int) -> SamplingParams:
+    """Build vLLM SamplingParams from generation arguments."""
+    kwargs = dict(temperature=temperature, top_p=top_p, max_tokens=max_tokens)
+    if args.top_k is not None:
+        kwargs["top_k"] = args.top_k
+    if args.repetition_penalty is not None:
+        kwargs["repetition_penalty"] = args.repetition_penalty
+    return SamplingParams(**kwargs)
+
 def generate_with_local_model(prompt: str, temperature: float, top_p: float, max_tokens: int) -> Dict:
     """Generate text using a local model."""
     try:
-        # Tokenize the prompt
-        inputs = local_tokenizer(prompt, return_tensors="pt")
-        
-        # Move inputs to GPU if available
-        if torch.cuda.is_available():
-            inputs = {k: v.to("cuda") for k, v in inputs.items()}
-            
-        # Create a streamer that shows progress
-        streamer = TextStreamer(local_tokenizer, skip_special_tokens=True)
-        
-        # Set up generation parameters
-        generation_config = {
-            "max_new_tokens": max_tokens,
-            "temperature": temperature,
-            "top_p": top_p,
-            "do_sample": temperature > 0,
-            "use_cache": True,
-            "pad_token_id": local_tokenizer.eos_token_id,
-            "streamer": streamer
-        }
-        
-        # Add optional parameters
-        if args.top_k is not None:
-            generation_config["top_k"] = args.top_k
-        if args.repetition_penalty is not None:
-            generation_config["repetition_penalty"] = args.repetition_penalty
-        
-        # Generate
-        with torch.no_grad():
-            outputs = local_model.generate(**inputs, **generation_config)
-        
-        # Decode the generated text
-        generated_text = local_tokenizer.decode(outputs[0][inputs["input_ids"].shape[1]:], skip_special_tokens=True)
-        
+        sampling_params = _build_sampling_params(temperature, top_p, max_tokens)
+        outputs = local_model.generate([prompt], sampling_params)
+        output = outputs[0].outputs[0]
         return {
-            "text": generated_text,
-            "finish_reason": "stop",  # Simplified
-            "usage": {"total_tokens": len(outputs[0])}
+            "text": output.text,
+            "finish_reason": output.finish_reason,
+            "usage": {"total_tokens": len(outputs[0].prompt_token_ids) + len(output.token_ids)}
         }
     except Exception as e:
         print(f"Error in local generation: {e}")
@@ -179,55 +132,16 @@ def generate_with_local_model(prompt: str, temperature: float, top_p: float, max
 def generate_with_local_model_batch(prompts: List[str], temperature: float, top_p: float, max_tokens: int) -> List[Dict]:
     """Generate text using a local model in batch mode for multiple prompts."""
     try:
+        sampling_params = _build_sampling_params(temperature, top_p, max_tokens)
+        outputs = local_model.generate(prompts, sampling_params)
         results = []
-        batch_size = args.batch_size
-        
-        # Process prompts in batches
-        for i in range(0, len(prompts), batch_size):
-            batch_prompts = prompts[i:i+batch_size]
-            print(f"Processing batch {i//batch_size + 1}/{(len(prompts) + batch_size - 1)//batch_size}")
-            
-            # Tokenize all prompts in the batch
-            batch_inputs = local_tokenizer(batch_prompts, padding=True, return_tensors="pt")
-            
-            # Move inputs to GPU if available
-            if torch.cuda.is_available():
-                batch_inputs = {k: v.to("cuda") for k, v in batch_inputs.items()}
-            
-            # Set up generation parameters
-            generation_config = {
-                "max_new_tokens": max_tokens,
-                "temperature": temperature,
-                "top_p": top_p,
-                "do_sample": temperature > 0,
-                "use_cache": True,
-                "pad_token_id": local_tokenizer.eos_token_id
-            }
-            
-            # Add optional parameters
-            if args.top_k is not None:
-                generation_config["top_k"] = args.top_k
-            if args.repetition_penalty is not None:
-                generation_config["repetition_penalty"] = args.repetition_penalty
-            
-            # Generate
-            with torch.no_grad():
-                batch_outputs = local_model.generate(**batch_inputs, **generation_config)
-            
-            # Process each output in the batch
-            for j, (input_ids, output_ids) in enumerate(zip(batch_inputs["input_ids"], batch_outputs)):
-                # Find where the generated text starts (after the prompt)
-                input_length = len(input_ids)
-                
-                # Decode the generated text
-                generated_text = local_tokenizer.decode(output_ids[input_length:], skip_special_tokens=True)
-                
-                results.append({
-                    "text": generated_text,
-                    "finish_reason": "stop",  # Simplified
-                    "usage": {"total_tokens": len(output_ids)}
-                })
-        
+        for req_output in outputs:
+            output = req_output.outputs[0]
+            results.append({
+                "text": output.text,
+                "finish_reason": output.finish_reason,
+                "usage": {"total_tokens": len(req_output.prompt_token_ids) + len(output.token_ids)}
+            })
         return results
     except Exception as e:
         print(f"Error in batch generation: {e}")

@@ -12,3 +12,4 @@ math-rollouts/
 math-rollouts_test/
 .cursorindexingignore
 .specstory
+venv/
