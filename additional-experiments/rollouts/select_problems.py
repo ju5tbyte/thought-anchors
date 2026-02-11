@@ -26,22 +26,83 @@ sys.path.insert(0, str(_root_dir))
 
 from utils_datasets import get_dataset_config
 
-parser = argparse.ArgumentParser(description="Select problems by model accuracy range")
-parser.add_argument("-m", "--model", type=str, default="deepseek/deepseek-r1-distill-qwen-14b")
-parser.add_argument("-ds", "--dataset", type=str, default="strategyqa", choices=["math", "strategyqa"])
-parser.add_argument("-sp", "--split", type=str, default="train", choices=["train", "test"])
-parser.add_argument("-np", "--num_problems", type=int, default=None, help="Number of problems to evaluate (None = all)")
-parser.add_argument("-nr", "--num_rollouts", type=int, default=50, help="Number of samples per problem")
+parser = argparse.ArgumentParser(
+    description="Select problems by model accuracy range"
+)
+parser.add_argument(
+    "-m", "--model", type=str, default="deepseek/deepseek-r1-distill-qwen-14b"
+)
+parser.add_argument(
+    "-ds",
+    "--dataset",
+    type=str,
+    default="strategyqa",
+    choices=["math", "strategyqa"],
+)
+parser.add_argument(
+    "-sp", "--split", type=str, default="train", choices=["train", "test"]
+)
+parser.add_argument(
+    "-np",
+    "--num_problems",
+    type=int,
+    default=None,
+    help="Number of problems to evaluate (None = all)",
+)
+parser.add_argument(
+    "-nr",
+    "--num_rollouts",
+    type=int,
+    default=50,
+    help="Number of samples per problem",
+)
 parser.add_argument("-t", "--temperature", type=float, default=0.6)
 parser.add_argument("-tp", "--top_p", type=float, default=0.95)
 parser.add_argument("-mt", "--max_tokens", type=int, default=4096)
 parser.add_argument("-ng", "--num_gpus", type=int, default=1)
-parser.add_argument("-lo", "--low", type=float, default=0.25, help="Lower accuracy bound (inclusive)")
-parser.add_argument("-hi", "--high", type=float, default=0.75, help="Upper accuracy bound (inclusive)")
-parser.add_argument("-o", "--output", type=str, default=None, help="Output JSON file path (default: auto-named)")
+parser.add_argument(
+    "-lo",
+    "--low",
+    type=float,
+    default=0.25,
+    help="Lower accuracy bound (inclusive)",
+)
+parser.add_argument(
+    "-hi",
+    "--high",
+    type=float,
+    default=0.75,
+    help="Upper accuracy bound (inclusive)",
+)
+parser.add_argument(
+    "-o",
+    "--output",
+    type=str,
+    default=None,
+    help="Output JSON file path (default: auto-named)",
+)
 parser.add_argument("-s", "--seed", type=int, default=42)
-parser.add_argument("-ty", "--type", type=str, default=None, help="Problem type filter (math only)")
-parser.add_argument("-l", "--level", type=str, default=None, help="Problem level filter (math only)")
+parser.add_argument(
+    "-ty",
+    "--type",
+    type=str,
+    default=None,
+    help="Problem type filter (math only)",
+)
+parser.add_argument(
+    "-l",
+    "--level",
+    type=str,
+    default=None,
+    help="Problem level filter (math only)",
+)
+parser.add_argument(
+    "-pb",
+    "--problem_batch_size",
+    type=int,
+    default=20,
+    help="Number of problems per batch (controls memory usage)",
+)
 args = parser.parse_args()
 
 random.seed(args.seed)
@@ -89,44 +150,51 @@ else:
 print(f"Loaded {len(problems)} problems.")
 
 # ---------------------------------------------------------------------------
-# Generate all rollouts for all problems in a single batch
-# ---------------------------------------------------------------------------
-all_prompts = []
-for problem_idx, problem in problems:
-    prompt = dataset_config["build_base_prompt"](problem)
-    all_prompts.extend([prompt] * args.num_rollouts)
-
-print(f"Generating {len(all_prompts)} total rollouts ({len(problems)} problems x {args.num_rollouts} rollouts)...")
-all_outputs = llm.generate(all_prompts, sampling_params)
-
-# ---------------------------------------------------------------------------
-# Compute per-problem accuracy from the flat output list
+# Generate rollouts in problem-batches and compute per-problem accuracy
 # ---------------------------------------------------------------------------
 results = []
 
-for i, (problem_idx, problem) in enumerate(problems):
-    start = i * args.num_rollouts
-    end = start + args.num_rollouts
-    problem_outputs = all_outputs[start:end]
+for batch_start in range(0, len(problems), args.problem_batch_size):
+    batch = problems[batch_start : batch_start + args.problem_batch_size]
+    batch_prompts = []
+    for problem_idx, problem in batch:
+        prompt = dataset_config["build_base_prompt"](problem)
+        batch_prompts.extend([prompt] * args.num_rollouts)
 
-    correct = 0
-    for req_output in problem_outputs:
-        text = req_output.outputs[0].text
-        answer = dataset_config["extract_answer"](text)
-        if answer and problem.get("gt_answer"):
-            if dataset_config["check_answer"](answer, problem["gt_answer"]):
-                correct += 1
+    print(
+        f"Generating batch {batch_start//args.problem_batch_size + 1}: "
+        f"problems {batch_start}~{batch_start+len(batch)-1} "
+        f"({len(batch_prompts)} rollouts)..."
+    )
+    batch_outputs = llm.generate(batch_prompts, sampling_params)
 
-    accuracy = correct / args.num_rollouts
-    results.append({
-        "problem_id": problem_idx,
-        "accuracy": accuracy,
-        "correct": correct,
-        "total": args.num_rollouts,
-        "in_range": args.low <= accuracy <= args.high,
-    })
-    print(f"Problem {problem_idx}: accuracy={accuracy:.2f} ({correct}/{args.num_rollouts})"
-          + (" [SELECTED]" if args.low <= accuracy <= args.high else ""))
+    for i, (problem_idx, problem) in enumerate(batch):
+        start = i * args.num_rollouts
+        end = start + args.num_rollouts
+        problem_outputs = batch_outputs[start:end]
+
+        correct = 0
+        for req_output in problem_outputs:
+            text = req_output.outputs[0].text
+            answer = dataset_config["extract_answer"](text)
+            if answer and problem.get("gt_answer"):
+                if dataset_config["check_answer"](answer, problem["gt_answer"]):
+                    correct += 1
+
+        accuracy = correct / args.num_rollouts
+        results.append(
+            {
+                "problem_id": problem_idx,
+                "accuracy": accuracy,
+                "correct": correct,
+                "total": args.num_rollouts,
+                "in_range": args.low <= accuracy <= args.high,
+            }
+        )
+        print(
+            f"Problem {problem_idx}: accuracy={accuracy:.2f} ({correct}/{args.num_rollouts})"
+            + (" [SELECTED]" if args.low <= accuracy <= args.high else "")
+        )
 
 # ---------------------------------------------------------------------------
 # Filter and summarise
@@ -145,22 +213,29 @@ print(f"\n--include_problems string:\n{include_problems_str}")
 # ---------------------------------------------------------------------------
 if args.output is None:
     model_short = args.model.split("/")[-1]
-    output_path = _this_dir / f"selected_problems_{args.dataset}_{model_short}_nr{args.num_rollouts}.json"
+    output_path = (
+        _this_dir
+        / f"selected_problems_{args.dataset}_{model_short}_nr{args.num_rollouts}.json"
+    )
 else:
     output_path = Path(args.output)
 
 output_path.parent.mkdir(parents=True, exist_ok=True)
 with open(output_path, "w") as f:
-    json.dump({
-        "model": args.model,
-        "dataset": args.dataset,
-        "split": args.split,
-        "num_rollouts": args.num_rollouts,
-        "low": args.low,
-        "high": args.high,
-        "num_selected": len(selected),
-        "include_problems_str": include_problems_str,
-        "problems": results,
-    }, f, indent=2)
+    json.dump(
+        {
+            "model": args.model,
+            "dataset": args.dataset,
+            "split": args.split,
+            "num_rollouts": args.num_rollouts,
+            "low": args.low,
+            "high": args.high,
+            "num_selected": len(selected),
+            "include_problems_str": include_problems_str,
+            "problems": results,
+        },
+        f,
+        indent=2,
+    )
 
 print(f"\nSaved to: {output_path}")
