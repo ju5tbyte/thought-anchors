@@ -89,18 +89,28 @@ else:
 print(f"Loaded {len(problems)} problems.")
 
 # ---------------------------------------------------------------------------
-# For each problem, generate num_rollouts completions and compute accuracy
+# Generate all rollouts for all problems in a single batch
+# ---------------------------------------------------------------------------
+all_prompts = []
+for problem_idx, problem in problems:
+    prompt = dataset_config["build_base_prompt"](problem)
+    all_prompts.extend([prompt] * args.num_rollouts)
+
+print(f"Generating {len(all_prompts)} total rollouts ({len(problems)} problems x {args.num_rollouts} rollouts)...")
+all_outputs = llm.generate(all_prompts, sampling_params)
+
+# ---------------------------------------------------------------------------
+# Compute per-problem accuracy from the flat output list
 # ---------------------------------------------------------------------------
 results = []
 
-for problem_idx, problem in problems:
-    prompt = dataset_config["build_base_prompt"](problem)
-    prompts = [prompt] * args.num_rollouts
-
-    outputs = llm.generate(prompts, sampling_params)
+for i, (problem_idx, problem) in enumerate(problems):
+    start = i * args.num_rollouts
+    end = start + args.num_rollouts
+    problem_outputs = all_outputs[start:end]
 
     correct = 0
-    for req_output in outputs:
+    for req_output in problem_outputs:
         text = req_output.outputs[0].text
         answer = dataset_config["extract_answer"](text)
         if answer and problem.get("gt_answer"):
