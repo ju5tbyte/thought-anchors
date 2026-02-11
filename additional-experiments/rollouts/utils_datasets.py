@@ -257,7 +257,7 @@ def load_strategyqa_problems(
     include_problems: Optional[List[int]] = None,
 ) -> List[Tuple[int, ProblemDict]]:
     """
-    Load problems from the StrategyQA dataset (wics/strategy-qa).
+    Load problems from the local StrategyQA JSON file.
 
     Returns List[Tuple[int, ProblemDict]] where ProblemDict has:
         problem:      str         - yes/no question text
@@ -269,30 +269,22 @@ def load_strategyqa_problems(
         facts:        List[str]   - raw supporting facts (preserved for analysis)
         decomposition: List[str]  - raw sub-questions (preserved for analysis)
     """
-    try:
-        from datasets import load_dataset
+    import json
 
-        dataset = load_dataset(
-            "json",
-            data_files="https://raw.githubusercontent.com/wicsaax/strategy-qa/main/strategyQA_train.json",
-        )
+    _DATASETS_DIR = Path(__file__).resolve().parent.parent / "datasets"
+    local_path = _DATASETS_DIR / "strategyqa" / f"strategyqa_{split}.json"
+
+    try:
+        with open(local_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
     except Exception as e:
-        print(f"Error loading StrategyQA dataset: {e}")
+        print(f"Error loading StrategyQA dataset from {local_path}: {e}")
         return []
 
-    available_splits = list(dataset.keys())
-    if split not in available_splits:
-        print(
-            f"Split '{split}' not found. Available: {available_splits}. Using first split."
-        )
-        split = available_splits[0]
-
-    split_data = dataset[split]
-
     indexed_problems: List[Tuple[int, ProblemDict]] = []
-    for i, item in enumerate(split_data):
+    for i, item in enumerate(data):
         # Convert bool answer to "yes"/"no"
-        raw_answer = item.get("answer", item.get("Answer", False))
+        raw_answer = item.get("answer", False)
         if isinstance(raw_answer, bool):
             gt_answer = "yes" if raw_answer else "no"
         else:
@@ -323,9 +315,7 @@ def load_strategyqa_problems(
     elif num_problems is not None and num_problems < len(indexed_problems):
         indexed_problems = random.sample(indexed_problems, num_problems)
 
-    print(
-        f"Loaded {len(indexed_problems)} StrategyQA problems from split '{split}'."
-    )
+    print(f"Loaded {len(indexed_problems)} StrategyQA problems from {local_path}.")
     return indexed_problems
 
 
