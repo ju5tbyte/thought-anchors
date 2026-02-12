@@ -1,0 +1,17 @@
+{
+  "problem": "Are those incapable of reproduction incapable of parenthood?",
+  "gt_answer": "no",
+  "gt_solution": "Surrogates are women who will carry a baby to term for a family seeking to adopt.\nMany children are put into the adoption and foster system every year and are always available to adopt, independent of the parents reproductive status.",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "Surrogates are women who will carry a baby to term for a family seeking to adopt.",
+    "Many children are put into the adoption and foster system every year and are always available to adopt, independent of the parents reproductive status."
+  ],
+  "decomposition": [
+    "What do surrogate mothers do?",
+    "What purpose do adoption and foster systems serve?",
+    "Do #1 and #2 fail to help couples incapable of reproduction become parents?"
+  ]
+}

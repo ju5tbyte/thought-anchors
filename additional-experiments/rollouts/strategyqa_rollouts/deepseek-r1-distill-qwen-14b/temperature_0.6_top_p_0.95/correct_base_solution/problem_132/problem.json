@@ -1,0 +1,16 @@
+{
+  "problem": "Can you find Bob Marley's face in most smoke shops?",
+  "gt_answer": "yes",
+  "gt_solution": "Bob Marley's face is on the packaging of a popular brand of rolling papers.\nBob Marley is a popular graphic to print on t-shirts for sale to smokers.",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "Bob Marley's face is on the packaging of a popular brand of rolling papers.",
+    "Bob Marley is a popular graphic to print on t-shirts for sale to smokers."
+  ],
+  "decomposition": [
+    "Where can one find Bob Marley's face printed on?",
+    "Are any items from #1 commonly found in smoke shops?"
+  ]
+}

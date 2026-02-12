@@ -1,0 +1,16 @@
+{
+  "problem": "Would a psychic who admits to hot reading be trustworthy?",
+  "gt_answer": "no",
+  "gt_solution": "Hot reading is a technique used by people presenting themselves as psychics to acquire information about a subject prior to the psychic session.\nHot reading is considered deception in the psychic community.",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "Hot reading is a technique used by people presenting themselves as psychics to acquire information about a subject prior to the psychic session.",
+    "Hot reading is considered deception in the psychic community."
+  ],
+  "decomposition": [
+    "What do people pretend to be in order to successfully carry out hot reading?",
+    "Do the 'real' #1 consider hot reading to be genuine?"
+  ]
+}

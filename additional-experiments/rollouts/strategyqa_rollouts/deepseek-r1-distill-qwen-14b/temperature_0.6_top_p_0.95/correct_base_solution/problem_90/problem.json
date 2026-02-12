@@ -1,0 +1,18 @@
+{
+  "problem": "Do more anchovy live in colder temperature waters than warmer?",
+  "gt_answer": "no",
+  "gt_solution": "Anchovy are a type of small fish.\nAnchovy are concentrated in the temperate waters of the Atlantic, Indian, and Pacific Oceans.\nAnchovy are rarely found in colder waters.",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "Anchovy are a type of small fish.",
+    "Anchovy are concentrated in the temperate waters of the Atlantic, Indian, and Pacific Oceans.",
+    "Anchovy are rarely found in colder waters."
+  ],
+  "decomposition": [
+    "Which oceans do Anchovy live in?",
+    "Which seas do Anchovy live in?",
+    "Are #1 and #2 cold waters?"
+  ]
+}

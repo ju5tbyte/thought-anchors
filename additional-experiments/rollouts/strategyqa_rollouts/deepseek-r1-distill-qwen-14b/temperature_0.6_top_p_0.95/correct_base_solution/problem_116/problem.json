@@ -1,0 +1,16 @@
+{
+  "problem": "Do guitarist's have fingers that can handle pain better than average?",
+  "gt_answer": "yes",
+  "gt_solution": "Guitarists typically have calloused fingertips. \nCallouses are formed of layers of dead skin and usually lack sensation.",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "Guitarists typically have calloused fingertips. ",
+    "Callouses are formed of layers of dead skin and usually lack sensation."
+  ],
+  "decomposition": [
+    "What typically forms on a Guitarists' finger?",
+    "Does #1 usually cause a lack of sensation?"
+  ]
+}

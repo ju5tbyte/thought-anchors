@@ -1,0 +1,18 @@
+{
+  "problem": "Could the Powerpuff Girls hypothetically attend the Camden Military Academy?",
+  "gt_answer": "no",
+  "gt_solution": "The Powerpuff Girls are kindergarten aged girls.\nCamden Military Academy is a private, all-male, military boarding school located in Camden, South Carolina.\nCamden Military Academy accepts male students in grades 7 through 12.",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "The Powerpuff Girls are kindergarten aged girls.",
+    "Camden Military Academy is a private, all-male, military boarding school located in Camden, South Carolina.",
+    "Camden Military Academy accepts male students in grades 7 through 12."
+  ],
+  "decomposition": [
+    "What gender are the Powerpuff Girls?",
+    "What gender is allowed to attend the Camden Military Academy?",
+    "Is #1 the same as #2?"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "problem": "Would an ethics professor teach a class on Cezanne?",
+  "gt_answer": "no",
+  "gt_solution": "Cezanne was an Impressionist painter\nAesthetics is the branch of philosophy that deals with the arts",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "Cezanne was an Impressionist painter",
+    "Aesthetics is the branch of philosophy that deals with the arts"
+  ],
+  "decomposition": [
+    "What was Cezanne known for?",
+    "What branch of philosophy would deal with #1?",
+    "Is #2 the same as ethics? "
+  ]
+}

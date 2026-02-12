@@ -1,0 +1,16 @@
+{
+  "problem": "Was Donald Trump the target of Islamophobia?",
+  "gt_answer": "no",
+  "gt_solution": "Islamophobia targets Muslims\nDonald Trump is a Presbyterian, a denomination of Christianity",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "Islamophobia targets Muslims",
+    "Donald Trump is a Presbyterian, a denomination of Christianity"
+  ],
+  "decomposition": [
+    "Islamophobia is the fear of which set of people?",
+    "Does Donald Trump identify as #1?"
+  ]
+}

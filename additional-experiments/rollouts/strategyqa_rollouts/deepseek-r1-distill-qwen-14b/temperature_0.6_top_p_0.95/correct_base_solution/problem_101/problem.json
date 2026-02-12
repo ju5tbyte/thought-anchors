@@ -1,0 +1,18 @@
+{
+  "problem": "Will Tokyo Tower be repainted only once during President Trump's first term?",
+  "gt_answer": "yes",
+  "gt_solution": "Tokyo Tower is repainted every five years \nThe last repainting began in 2018\nTrump's first presidential term is from 2017 to 2021",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "Tokyo Tower is repainted every five years ",
+    "The last repainting began in 2018",
+    "Trump's first presidential term is from 2017 to 2021"
+  ],
+  "decomposition": [
+    "How long (in years) is President Trump's first term?",
+    "How often (interval in years) is the Tokyo Tower repainted?",
+    "Is #2 divided by #1 less than two?"
+  ]
+}

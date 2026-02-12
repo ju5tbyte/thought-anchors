@@ -1,0 +1,21 @@
+{
+  "problem": "Is the tibia necessary to win the Stanley Cup?",
+  "gt_answer": "yes",
+  "gt_solution": "The Stanley Cup is the championship trophy of the National Hockey League\nIce hockey is a game played by individuals wearing ice skates to move around a frozen playing field\nThe tibia is a leg bone\nLegs are required in order to use ice skates",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "The Stanley Cup is the championship trophy of the National Hockey League",
+    "Ice hockey is a game played by individuals wearing ice skates to move around a frozen playing field",
+    "The tibia is a leg bone",
+    "Legs are required in order to use ice skates"
+  ],
+  "decomposition": [
+    "Which achievement leads to the award of the Stanley Cup?",
+    "Which sport does #1 involve?",
+    "Which body parts are actively involved in playing #2",
+    "Which part of the body is the tibia found in?",
+    "Is #4 included in #3?"
+  ]
+}

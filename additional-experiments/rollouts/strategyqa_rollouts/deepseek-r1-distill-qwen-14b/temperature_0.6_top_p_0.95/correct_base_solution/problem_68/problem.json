@@ -1,0 +1,16 @@
+{
+  "problem": "Did J. P. Morgan have healthy lungs?",
+  "gt_answer": "no",
+  "gt_solution": "J. P. Morgan smoked dozens of cigars per day.\nSmoking tobacco damages the lungs and increases the risk of lung cancer significantly.",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "J. P. Morgan smoked dozens of cigars per day.",
+    "Smoking tobacco damages the lungs and increases the risk of lung cancer significantly."
+  ],
+  "decomposition": [
+    "What are the causes of unhealthy lungs?",
+    "Did J. P. Morgan engage in any part of #1?"
+  ]
+}

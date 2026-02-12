@@ -1,0 +1,17 @@
+{
+  "problem": "Is average number of peas in a pod enough commas for a billion?",
+  "gt_answer": "yes",
+  "gt_solution": "The average number of peas in a pod is 6 or 7.\nA billion is a number that has three commas in it.",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "The average number of peas in a pod is 6 or 7.",
+    "A billion is a number that has three commas in it."
+  ],
+  "decomposition": [
+    "How many peas are in the average pod?",
+    "How many commas are needed for a billion?",
+    "Is #1 at least equal to #2?"
+  ]
+}

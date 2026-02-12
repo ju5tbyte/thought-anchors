@@ -1,0 +1,16 @@
+{
+  "problem": "Can you only see hippopotamus in Africa?",
+  "gt_answer": "no",
+  "gt_solution": "The United States has several zoos featuring hippopotamus.\nIn the UK, you can see hippopotamus at the Marwell Zoo.",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "The United States has several zoos featuring hippopotamus.",
+    "In the UK, you can see hippopotamus at the Marwell Zoo."
+  ],
+  "decomposition": [
+    "Where are animals kept for recreation/sightseeing?",
+    "Can #1 that has hippopotamus be found only inside Africa?"
+  ]
+}

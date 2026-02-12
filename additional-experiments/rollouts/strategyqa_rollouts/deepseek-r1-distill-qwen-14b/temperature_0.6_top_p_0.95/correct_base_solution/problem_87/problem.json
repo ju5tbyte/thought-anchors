@@ -1,0 +1,17 @@
+{
+  "problem": "Could ten gallons of seawater crush a six year old?",
+  "gt_answer": "yes",
+  "gt_solution": "The average weight of a six year old is 45 pounds.\nOne gallon of seawater weighs slightly over 8 pounds.",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "The average weight of a six year old is 45 pounds.",
+    "One gallon of seawater weighs slightly over 8 pounds."
+  ],
+  "decomposition": [
+    "What is the average weight of a six year old?",
+    "What is the weight of a gallon of seawater?",
+    "Is ten times #2 more than #1?"
+  ]
+}

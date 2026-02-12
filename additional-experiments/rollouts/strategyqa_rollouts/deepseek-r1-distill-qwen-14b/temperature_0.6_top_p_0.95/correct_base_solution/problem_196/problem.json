@@ -1,0 +1,18 @@
+{
+  "problem": "Would keelhauling be a fair punishment under the Eighth Amendment?",
+  "gt_answer": "no",
+  "gt_solution": "Keelhauling was a severe punishment whereby the condemned man was dragged beneath the ship\u2019s keel on a rope.\nKeelhauling is considered a form of torture.\nTorture is considered cruel.\nThe Eighth Amendment forbids the use of \"cruel and unusual punishment\".",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "Keelhauling was a severe punishment whereby the condemned man was dragged beneath the ship\u2019s keel on a rope.",
+    "Keelhauling is considered a form of torture.",
+    "Torture is considered cruel.",
+    "The Eighth Amendment forbids the use of \"cruel and unusual punishment\"."
+  ],
+  "decomposition": [
+    "What kind of punishment is keelhauling considered a form of?",
+    "Does the Eighth Amendment allow #1?"
+  ]
+}

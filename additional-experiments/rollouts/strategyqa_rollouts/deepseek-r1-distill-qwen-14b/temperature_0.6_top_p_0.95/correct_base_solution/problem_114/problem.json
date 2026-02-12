@@ -1,0 +1,20 @@
+{
+  "problem": "Would baker's dozen of side by side Mac Trucks jam up Golden Gate Bridge?",
+  "gt_answer": "yes",
+  "gt_solution": "The width of the Golden Gate Bridge is 90 feet. \nA baker's dozen includes 13 items.\nThe width of a Mac truck is around 8 feet.",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "The width of the Golden Gate Bridge is 90 feet. ",
+    "A baker's dozen includes 13 items.",
+    "The width of a Mac truck is around 8 feet."
+  ],
+  "decomposition": [
+    "How wide is a Mac truck?",
+    "How many items are in a baker's dozen?",
+    "What is #1 multiplied by #2?",
+    "How wide is the Golden Gate Bridge?",
+    "Is #3 greater than or equal to #4?"
+  ]
+}

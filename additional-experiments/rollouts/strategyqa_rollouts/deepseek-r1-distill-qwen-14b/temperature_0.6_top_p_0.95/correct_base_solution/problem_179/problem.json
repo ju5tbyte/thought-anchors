@@ -1,0 +1,18 @@
+{
+  "problem": "Has the Indian Ocean garbage patch not completed two full rotations of debris since its discovery?",
+  "gt_answer": "yes",
+  "gt_solution": "The Indian Ocean garbage patch was discovered in 2010\nThe Indian Ocean garbage patch takes 6 years to complete a circulation ",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "The Indian Ocean garbage patch was discovered in 2010",
+    "The Indian Ocean garbage patch takes 6 years to complete a circulation "
+  ],
+  "decomposition": [
+    "When was the Indian Ocean garbage patch discovered?",
+    "How long does it take for the Indian Ocean garbage patch to complete a rotation?",
+    "How many years has it been since #1?",
+    "Is #3 less than two times #2?"
+  ]
+}

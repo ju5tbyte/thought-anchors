@@ -1,0 +1,21 @@
+{
+  "problem": "Has Oscar Wilde's most famous character ever been in an Eva Green project?",
+  "gt_answer": "yes",
+  "gt_solution": "Oscar Wilde is most famous for his book The Picture of Dorian Gray.\nDorian Gray is a beautiful socialite that is the main character of The Picture of Dorian Gray.\nAcclaimed actress, Eva Green has starred in numerous films and TV shows including Penny Dreadful.\nDorian Gray flirts with Vanessa Ives in the Penny Dreadful episode, Seance.\nVanessa Ives is played by Eva Green.",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "Oscar Wilde is most famous for his book The Picture of Dorian Gray.",
+    "Dorian Gray is a beautiful socialite that is the main character of The Picture of Dorian Gray.",
+    "Acclaimed actress, Eva Green has starred in numerous films and TV shows including Penny Dreadful.",
+    "Dorian Gray flirts with Vanessa Ives in the Penny Dreadful episode, Seance.",
+    "Vanessa Ives is played by Eva Green."
+  ],
+  "decomposition": [
+    "What is Oscar Wilde's most famous book?",
+    "Who is the main character of #1?",
+    "What episode of Penny Dreadful was #2 in?",
+    "Is one of the characters in #3 played by Eva Green?"
+  ]
+}

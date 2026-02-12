@@ -1,0 +1,19 @@
+{
+  "problem": "Would Sophist's have hypothetically made good lawyers?",
+  "gt_answer": "yes",
+  "gt_solution": "Sophist's were teachers in ancient Greece that used rhetoric.\nLawyers must persuade juries that their side of the case is correct.\nRhetoric is the ancient art of persuasion that was meant to sway audiences in specific situations.",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "Sophist's were teachers in ancient Greece that used rhetoric.",
+    "Lawyers must persuade juries that their side of the case is correct.",
+    "Rhetoric is the ancient art of persuasion that was meant to sway audiences in specific situations."
+  ],
+  "decomposition": [
+    "What were Sophist's role in Ancient Greece?",
+    "What did #1 use in their position?",
+    "What do lawyers do in their position?",
+    "Would #3 find #2 to be helpful?"
+  ]
+}

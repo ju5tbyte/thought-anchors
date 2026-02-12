@@ -1,0 +1,17 @@
+{
+  "problem": "Is watching  Star Wars necessary to know who Darth Vader is?",
+  "gt_answer": "no",
+  "gt_solution": "Star Wars is one of the most widely parodied film series to be produced.\nStar Wars merchandise, from tees to Halloween costumes, is widely available and is plentiful. ",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "Star Wars is one of the most widely parodied film series to be produced.",
+    "Star Wars merchandise, from tees to Halloween costumes, is widely available and is plentiful. "
+  ],
+  "decomposition": [
+    "Has Star Wars inspired many parody films?",
+    "Are Star Wars merchandise depicting characters from the movie available?",
+    "Considering #1 and #2, are there no depictions of characters outside the movie?"
+  ]
+}

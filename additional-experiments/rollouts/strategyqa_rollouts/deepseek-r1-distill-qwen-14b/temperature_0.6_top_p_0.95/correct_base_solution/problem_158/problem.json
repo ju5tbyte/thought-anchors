@@ -1,0 +1,19 @@
+{
+  "problem": "Did King James I despise fairy beings?",
+  "gt_answer": "yes",
+  "gt_solution": "King James I wrote Daemonologie in which he stated that a fairy was a being that could act as a familiar.\nA familiar was an animal or spirit that conspired with The Devil.\nKing James I presided over the execution of Agnes Sampson.\nAgnes Sampson was accused of conspiring with familiars and was burned at the stake.",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "King James I wrote Daemonologie in which he stated that a fairy was a being that could act as a familiar.",
+    "A familiar was an animal or spirit that conspired with The Devil.",
+    "King James I presided over the execution of Agnes Sampson.",
+    "Agnes Sampson was accused of conspiring with familiars and was burned at the stake."
+  ],
+  "decomposition": [
+    "What did King James I claim that fairies could act as in his book 'Daemonologie'",
+    "Which beings did he execute Agnes Sampson for allegedly conspiring with?",
+    "Is #1 the same as #2?"
+  ]
+}

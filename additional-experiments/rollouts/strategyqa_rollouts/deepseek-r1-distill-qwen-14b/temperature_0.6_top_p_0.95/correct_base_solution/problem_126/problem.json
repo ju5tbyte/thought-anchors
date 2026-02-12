@@ -1,0 +1,18 @@
+{
+  "problem": "Can a computer be programmed entirely in Boolean algebra?",
+  "gt_answer": "yes",
+  "gt_solution": "Boolean algebra is the branch of algebra in which the values of the variables are the truth values true and false, usually denoted 1 and 0 respectively. \nMathematics in 1 and 0 is also called binary or machine language.\nComputers are programmed in machine language.",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "Boolean algebra is the branch of algebra in which the values of the variables are the truth values true and false, usually denoted 1 and 0 respectively. ",
+    "Mathematics in 1 and 0 is also called binary or machine language.",
+    "Computers are programmed in machine language."
+  ],
+  "decomposition": [
+    "What are values included in Boolean algebra?",
+    "At what level are program codes read directly by computers?",
+    "Are the values included in #2 the same as #1?"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "problem": "Is the best tasting part of the papaya in the center?",
+  "gt_answer": "no",
+  "gt_solution": "The center of a papaya contains a cluster of seeds.\nPapaya seeds, while edible, are often discarded for the soft flesh that surrounds them.",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "The center of a papaya contains a cluster of seeds.",
+    "Papaya seeds, while edible, are often discarded for the soft flesh that surrounds them."
+  ],
+  "decomposition": [
+    "What is usually located in the center of papayas?",
+    "Is #1 usually consumed by people when eating papayas?"
+  ]
+}

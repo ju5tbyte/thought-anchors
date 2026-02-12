@@ -1,0 +1,18 @@
+{
+  "problem": "Would someone with back pain enjoy picking strawberries?",
+  "gt_answer": "no",
+  "gt_solution": "Back pain may be worsened by repeated bending at the waist.\nStrawberries grow very close to the ground.",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "Back pain may be worsened by repeated bending at the waist.",
+    "Strawberries grow very close to the ground."
+  ],
+  "decomposition": [
+    "What are some common body postures that can aggravate back pain?",
+    "At which position relative to the ground do strawberries grow?",
+    "What posture would one have to assume to reach #2?",
+    "Is #3 excluded from #1?"
+  ]
+}

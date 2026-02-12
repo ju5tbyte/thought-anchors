@@ -1,0 +1,17 @@
+{
+  "problem": "Does rock star Keith Richards play a captain of a boat in a movie?",
+  "gt_answer": "yes",
+  "gt_solution": "Keith Richards has a cameo appearance in two of the Pirates of the Caribbean movies.\nHe plays Captain Teague, the elderly father of famous pirate Captain Jack Sparrow.\nIn At World's End, he is the member of the council of Pirate Lords who is responsible for keeping the Pirate Code, and there is a brief shot of him and his crew aboard their ship during the sequence where the pirates are raising their banners in preparation to fight.",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "Keith Richards has a cameo appearance in two of the Pirates of the Caribbean movies.",
+    "He plays Captain Teague, the elderly father of famous pirate Captain Jack Sparrow.",
+    "In At World's End, he is the member of the council of Pirate Lords who is responsible for keeping the Pirate Code, and there is a brief shot of him and his crew aboard their ship during the sequence where the pirates are raising their banners in preparation to fight."
+  ],
+  "decomposition": [
+    "What role did Keith Richards play in the Pirates of the Caribbean movies?",
+    "Can #1 be considered a captain of a boat?"
+  ]
+}

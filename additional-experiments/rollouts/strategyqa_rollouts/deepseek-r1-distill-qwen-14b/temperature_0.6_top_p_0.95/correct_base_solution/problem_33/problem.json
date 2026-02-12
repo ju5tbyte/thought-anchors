@@ -1,0 +1,17 @@
+{
+  "problem": "Would a geographer use biochemistry in their work?",
+  "gt_answer": "no",
+  "gt_solution": "A geographer is a scientist whose area of study is geography, the study of Earth's natural environment and human society.\nBiochemistry is the study of chemical processes within and relating to living organisms.",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "A geographer is a scientist whose area of study is geography, the study of Earth's natural environment and human society.",
+    "Biochemistry is the study of chemical processes within and relating to living organisms."
+  ],
+  "decomposition": [
+    "What is the area of study of a geographer?",
+    "What is the area of study of Biochemistry",
+    "Is any of #1 in #2?"
+  ]
+}

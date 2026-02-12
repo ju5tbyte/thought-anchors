@@ -1,0 +1,17 @@
+{
+  "problem": "Is Olympia, Washington part of \"Ish river country\"?",
+  "gt_answer": "yes",
+  "gt_solution": "Poet Robert Sund called the Puget Sound region \"Ish River country\".\nOlympia is in the Puget Sound region.",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "Poet Robert Sund called the Puget Sound region \"Ish River country\".",
+    "Olympia is in the Puget Sound region."
+  ],
+  "decomposition": [
+    "Where is Ish river country? ",
+    "What cities are located in #1?",
+    "Is Olympia included in the list in #2?"
+  ]
+}

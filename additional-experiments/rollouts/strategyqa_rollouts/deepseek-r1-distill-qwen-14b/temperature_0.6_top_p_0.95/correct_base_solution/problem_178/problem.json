@@ -1,0 +1,17 @@
+{
+  "problem": "Did Eiffel Tower contribute to a war victory?",
+  "gt_answer": "yes",
+  "gt_solution": "A radio transmitter located in the Eiffel Tower.\nThis transmitter jammed German radio communications.\nThis hindrance in German radio communications contributing to the Allied victory at the First Battle of the Marne.",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "A radio transmitter located in the Eiffel Tower.",
+    "This transmitter jammed German radio communications.",
+    "This hindrance in German radio communications contributing to the Allied victory at the First Battle of the Marne."
+  ],
+  "decomposition": [
+    "What notable events in which Eiffel Tower was of primary importance took place during a war?",
+    "Did any of #1 give a side an advantage during the said war?"
+  ]
+}

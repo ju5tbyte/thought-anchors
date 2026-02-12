@@ -1,0 +1,16 @@
+{
+  "problem": "Does Hades appear in a Disney Channel musical movie?",
+  "gt_answer": "yes",
+  "gt_solution": "The Descendants Trilogy is a series of musical movies that aired on Disney Channel between 2015 and 2019.\nHades appears as a supporting character in the third Descendants movie.",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "The Descendants Trilogy is a series of musical movies that aired on Disney Channel between 2015 and 2019.",
+    "Hades appears as a supporting character in the third Descendants movie."
+  ],
+  "decomposition": [
+    "Which major musical series has been aired on Disney Channel?",
+    "Has Hades been featured in any of #1?"
+  ]
+}

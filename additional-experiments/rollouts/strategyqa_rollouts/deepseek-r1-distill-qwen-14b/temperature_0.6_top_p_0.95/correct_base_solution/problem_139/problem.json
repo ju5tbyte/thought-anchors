@@ -1,0 +1,17 @@
+{
+  "problem": "Were weather phenomena avoided when naming minor league baseball teams?",
+  "gt_answer": "no",
+  "gt_solution": "Weather phenomena refers to types of weather caused conditions such as cyclones, storms, and tsunamis.\nMinor league baseball teams include the Brooklyn Cyclones and Lake Elsinore Storm.",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "Weather phenomena refers to types of weather caused conditions such as cyclones, storms, and tsunamis.",
+    "Minor league baseball teams include the Brooklyn Cyclones and Lake Elsinore Storm."
+  ],
+  "decomposition": [
+    "What are some names of weather phenomena?",
+    "What are the name of minor league baseball teams?",
+    "Are any terms in #1 also present in #2?"
+  ]
+}

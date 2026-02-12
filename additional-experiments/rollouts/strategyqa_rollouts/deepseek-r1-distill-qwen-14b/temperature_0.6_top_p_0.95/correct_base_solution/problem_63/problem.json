@@ -1,0 +1,18 @@
+{
+  "problem": "Is double duty an incorrect phrase for host of Dancing With The Stars?",
+  "gt_answer": "no",
+  "gt_solution": "Double duty refers to having more than one job at the same time.\nThe host of Dancing WIth The Stars is Tom Bergeron.\nTom Bergeron is the host of America's Funniest Home Videos.",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "Double duty refers to having more than one job at the same time.",
+    "The host of Dancing WIth The Stars is Tom Bergeron.",
+    "Tom Bergeron is the host of America's Funniest Home Videos."
+  ],
+  "decomposition": [
+    "Who is the host of TV series 'Dancing WIth The Stars'?",
+    "Who hosts America's Funniest Home Videos?",
+    "Do #1 and #2 being the same fail to meet the definition of double duty?"
+  ]
+}

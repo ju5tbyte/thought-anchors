@@ -1,0 +1,16 @@
+{
+  "problem": "Did land owners elect their rulers in the Kingdom of Hungary?",
+  "gt_answer": "no",
+  "gt_solution": "The Kingdom of Hungary was a monarchy.\nMonarchies do not allow citizens to elect their own rulers.",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "The Kingdom of Hungary was a monarchy.",
+    "Monarchies do not allow citizens to elect their own rulers."
+  ],
+  "decomposition": [
+    "Which kind of government ruled over the Kingdom of Hungary?",
+    "Does #1 allow citizens to elect their own rulers?"
+  ]
+}

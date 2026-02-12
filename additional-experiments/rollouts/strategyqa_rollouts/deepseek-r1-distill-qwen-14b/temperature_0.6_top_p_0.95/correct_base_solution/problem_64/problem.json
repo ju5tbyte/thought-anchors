@@ -1,0 +1,18 @@
+{
+  "problem": "Could Lil Wayne legally operate a vehicle on his own at the beginning of his career?",
+  "gt_answer": "no",
+  "gt_solution": "Lil Wayne's career began in 1995, at the age of 12, when he was signed by Birdman and joined Cash Money Records as the youngest member of the label.\nA driver's license is required to legally operate a vehicle by yourself in the USA.\nThe eligible age to first obtain a driver's license varies substantially from state to state, from 14 years, three months, in South Dakota to 17 in New Jersey.",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "Lil Wayne's career began in 1995, at the age of 12, when he was signed by Birdman and joined Cash Money Records as the youngest member of the label.",
+    "A driver's license is required to legally operate a vehicle by yourself in the USA.",
+    "The eligible age to first obtain a driver's license varies substantially from state to state, from 14 years, three months, in South Dakota to 17 in New Jersey."
+  ],
+  "decomposition": [
+    "How old was Lil Wayne when he started his career in music?",
+    "What is the minimum age required to obtain a valid driver's license in the US?",
+    "Is #1 at least equal to #2?"
+  ]
+}

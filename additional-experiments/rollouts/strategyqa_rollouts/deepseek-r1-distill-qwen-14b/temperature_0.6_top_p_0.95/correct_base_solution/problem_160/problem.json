@@ -1,0 +1,17 @@
+{
+  "problem": "Did Harry Houdini's wife make psychics look foolish?",
+  "gt_answer": "yes",
+  "gt_solution": "Psychics are people that claim to have special powers to talk to the dead.\nHarry Houdini gave his wife a code word to ask psychics to repeat after his death.\nThe wife of Harry Houdini, Wilhelmina Beatrice \"Bess\" Rahner, asked several psychics for the code word and none knew it.",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "Psychics are people that claim to have special powers to talk to the dead.",
+    "Harry Houdini gave his wife a code word to ask psychics to repeat after his death.",
+    "The wife of Harry Houdini, Wilhelmina Beatrice \"Bess\" Rahner, asked several psychics for the code word and none knew it."
+  ],
+  "decomposition": [
+    "What did Harry Houdini give to his wife to test psychics after his death?",
+    "Were psychics unable to provide #1?"
+  ]
+}

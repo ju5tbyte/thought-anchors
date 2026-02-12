@@ -1,0 +1,22 @@
+{
+  "problem": "Is greed the most prevalent of the Seven Deadly Sins?",
+  "gt_answer": "no",
+  "gt_solution": "Greed is a longing for wealth and power.\nWhite collar crime involves businesses stealing money or assets from people. \n5-10% of arrests per 100,000 arrests were for  white collar crime according to Department of Justice statistics.\nGluttony is the overindulgence in food or similar things.\n39.8% of US adults were classified as overweight according to the National Center for Health Statistics.",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "Greed is a longing for wealth and power.",
+    "White collar crime involves businesses stealing money or assets from people. ",
+    "5-10% of arrests per 100,000 arrests were for  white collar crime according to Department of Justice statistics.",
+    "Gluttony is the overindulgence in food or similar things.",
+    "39.8% of US adults were classified as overweight according to the National Center for Health Statistics."
+  ],
+  "decomposition": [
+    "Is greed a  deadly sin?",
+    "Is gluttonly a deadly sin?",
+    "What percent of crimes involved greed?",
+    "What percent of people are overweight?",
+    "If #1 and #2 are both yes is #3 a higher percentager than #4?"
+  ]
+}

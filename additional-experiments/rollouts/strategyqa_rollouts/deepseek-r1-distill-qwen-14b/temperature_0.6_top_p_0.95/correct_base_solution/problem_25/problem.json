@@ -1,0 +1,17 @@
+{
+  "problem": "Would the top of Mount Fuji stick out of the Sea of Japan? ",
+  "gt_answer": "yes",
+  "gt_solution": "The average depth of the Sea of Japan is  5,748 feet (1,752 metres) and its maximum depth is 12,276 feet (3,742 metres)\nMount Fuji is 3,776.24 metres (12,389.2 ft) tall. ",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "The average depth of the Sea of Japan is  5,748 feet (1,752 metres) and its maximum depth is 12,276 feet (3,742 metres)",
+    "Mount Fuji is 3,776.24 metres (12,389.2 ft) tall. "
+  ],
+  "decomposition": [
+    "How tall is Mount Fuji?",
+    "What is the maximum depth of the Sea of Japan?",
+    "Is #1 greater than #2?"
+  ]
+}

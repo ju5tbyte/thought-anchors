@@ -694,28 +694,29 @@ async def main():
     """Main function to run the script."""
     # Load problems via dataset config
     load_fn = dataset_config["load_problems"]
+    include_problems_parsed = [int(x) for x in args.include_problems.split(",") if x.strip()] if args.include_problems else None
+
     if args.dataset == "math":
         problems = load_fn(
             problem_type=args.type,
             level=args.level,
             num_problems=args.num_problems,
             split=args.split,
-            include_problems=args.include_problems,
+            include_problems=include_problems_parsed,
         )
     else:
         problems = load_fn(
             num_problems=args.num_problems,
             split=args.split,
-            include_problems=args.include_problems,
+            include_problems=include_problems_parsed,
         )
     
     if args.exclude_problems:
         exclude_problems = [int(id) for id in args.exclude_problems.split(",")]
         problems = [problem for problem in problems if problem[0] not in exclude_problems]
         
-    if args.include_problems:
-        include_problems = [int(id) for id in args.include_problems.split(",")]
-        problems = [problem for problem in problems if problem[0] in include_problems]
+    if include_problems_parsed:
+        problems = [problem for problem in problems if problem[0] in include_problems_parsed]
     
     if not problems:
         print(f"No problems loaded. Exiting.")

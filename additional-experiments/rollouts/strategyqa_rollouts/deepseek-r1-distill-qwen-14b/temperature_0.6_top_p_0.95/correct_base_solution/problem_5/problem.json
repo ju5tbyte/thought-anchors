@@ -1,0 +1,18 @@
+{
+  "problem": "Is shrimp scampi definitely free of plastic?",
+  "gt_answer": "no",
+  "gt_solution": "Shrimp scampi is a dish made with shrimp.\nShrimp have been found to contain microplastics.\nMicroplastics are plastic material.",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "Shrimp scampi is a dish made with shrimp.",
+    "Shrimp have been found to contain microplastics.",
+    "Microplastics are plastic material."
+  ],
+  "decomposition": [
+    "What protein is Shrimp scampi made out of?",
+    "What have #1 been found to contain?",
+    "Are #2 free from plastic?"
+  ]
+}

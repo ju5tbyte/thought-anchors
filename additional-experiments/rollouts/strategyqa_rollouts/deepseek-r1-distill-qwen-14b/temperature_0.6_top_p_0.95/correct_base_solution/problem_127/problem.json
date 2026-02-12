@@ -1,0 +1,18 @@
+{
+  "problem": "Is Guitar Hero Beatles inappropriate for a US third grader?",
+  "gt_answer": "no",
+  "gt_solution": "The average age of a US third grader is 8.\nGuitar Hero is recommended for ages 7 and up.\nThe Beatles were a British rock band with a plethora of radio friendly hits.",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "The average age of a US third grader is 8.",
+    "Guitar Hero is recommended for ages 7 and up.",
+    "The Beatles were a British rock band with a plethora of radio friendly hits."
+  ],
+  "decomposition": [
+    "How old is the average US third grader?",
+    "What is the recommended age to play Guitar Hero?",
+    "Is #1 higher than #2?"
+  ]
+}

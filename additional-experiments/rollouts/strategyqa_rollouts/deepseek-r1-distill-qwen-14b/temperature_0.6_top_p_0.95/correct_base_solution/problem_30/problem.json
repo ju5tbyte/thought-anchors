@@ -1,0 +1,16 @@
+{
+  "problem": "Would Adam Sandler get a reference to Cole Spouse and a scuba man doll?",
+  "gt_answer": "yes",
+  "gt_solution": "Adam Sandler and Cole Sprouse starred together in \"Big Daddy\".\nA prop used throughout \"Big Daddy\" was a scuba diving action figure that Cole's character called 'Scuba Steve'.",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "Adam Sandler and Cole Sprouse starred together in \"Big Daddy\".",
+    "A prop used throughout \"Big Daddy\" was a scuba diving action figure that Cole's character called 'Scuba Steve'."
+  ],
+  "decomposition": [
+    "What did Adam Sandler and Cole Sprouse star together in?",
+    "Was a scuba man doll used as a prop by Cole in #1?"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "problem": "Does actress Leila George lack the height to be a model?",
+  "gt_answer": "no",
+  "gt_solution": "Actress Leila George, the daughter of Vincent D'onofrio, is 5'9\" tall.\nModel Cindy Crawford is 5'9\" tall.\nModel Agyness Deyn is 5'8\" tall.\nModel Sara Sampaio is 5'8\" tall.",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "Actress Leila George, the daughter of Vincent D'onofrio, is 5'9\" tall.",
+    "Model Cindy Crawford is 5'9\" tall.",
+    "Model Agyness Deyn is 5'8\" tall.",
+    "Model Sara Sampaio is 5'8\" tall."
+  ],
+  "decomposition": [
+    "How tall is Leila George?",
+    "How tall is Cindy Crawford? ",
+    "What is the height of model Sara Sampaio?",
+    "Is #1 shorter than both #2 and #3?"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "problem": "Would it be impossible to use an Iwato scale for a twelve-tone technique composition?",
+  "gt_answer": "yes",
+  "gt_solution": "The Iwato scale has 5 pitch cases.\nThe chromatic scale has 12 pitch cases.",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "The Iwato scale has 5 pitch cases.",
+    "The chromatic scale has 12 pitch cases."
+  ],
+  "decomposition": [
+    "How many pitch cases are used for the Iwato scale?",
+    "Is #1 not equal to the number of pitch cases needed for the twelve-tone technique?"
+  ]
+}

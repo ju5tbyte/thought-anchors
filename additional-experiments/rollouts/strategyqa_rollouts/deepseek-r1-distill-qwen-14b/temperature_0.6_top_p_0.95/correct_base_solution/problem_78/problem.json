@@ -1,0 +1,18 @@
+{
+  "problem": "Would a pear sink in water?",
+  "gt_answer": "no",
+  "gt_solution": "The density of a raw pear is about 0.59 g/cm^3.\nThe density of water is about 1 g/cm^3.\nObjects only sink if they are denser than the surrounding fluid.",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "The density of a raw pear is about 0.59 g/cm^3.",
+    "The density of water is about 1 g/cm^3.",
+    "Objects only sink if they are denser than the surrounding fluid."
+  ],
+  "decomposition": [
+    "What is the density of a pear?",
+    "What is the density of water?",
+    "Is #1 greater than #2?"
+  ]
+}

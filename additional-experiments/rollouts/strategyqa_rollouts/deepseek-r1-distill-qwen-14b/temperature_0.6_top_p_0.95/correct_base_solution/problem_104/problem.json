@@ -1,0 +1,17 @@
+{
+  "problem": "Does the anatomy of a camel lend itself to jokes on Wednesdays?",
+  "gt_answer": "yes",
+  "gt_solution": "Wednesday is often referred to as 'hump day' as a joke.\nCamels are known for having a significant hump. ",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "Wednesday is often referred to as 'hump day' as a joke.",
+    "Camels are known for having a significant hump. "
+  ],
+  "decomposition": [
+    "As a joke, what is Wednesday otherwise known as?",
+    "What are camels known for having?",
+    "Is there overlap between #1 and #2?"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "problem": "Would a week be enough time to watch every episode of Ugly Betty?",
+  "gt_answer": "yes",
+  "gt_solution": "There are 168 hours in a week.\nThe entire Ugly Betty series is 85 hours long.",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "There are 168 hours in a week.",
+    "The entire Ugly Betty series is 85 hours long."
+  ],
+  "decomposition": [
+    "How many hours are in a week?",
+    "How long is the entire Ugly Betty series?",
+    "Is #1 greater than or equal to #2?"
+  ]
+}

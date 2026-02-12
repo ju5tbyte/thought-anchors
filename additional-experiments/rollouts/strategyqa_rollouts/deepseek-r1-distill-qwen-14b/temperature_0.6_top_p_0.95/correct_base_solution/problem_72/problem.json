@@ -1,0 +1,18 @@
+{
+  "problem": "Would a hypothetical Yeti be towered over by Andre the Giant?",
+  "gt_answer": "yes",
+  "gt_solution": "The mythical Yeti is said to be between 200 and 400 pounds.\nThe mythical Yeti is said to be around 6 feet tall.\nAndre the Giant was an imposing 7'4\" and 529 pounds.",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "The mythical Yeti is said to be between 200 and 400 pounds.",
+    "The mythical Yeti is said to be around 6 feet tall.",
+    "Andre the Giant was an imposing 7'4\" and 529 pounds."
+  ],
+  "decomposition": [
+    "How tall was Andre the Giant?",
+    "How tall are Yeti thought to be?",
+    "Is #2 greater than #1?"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "problem": "Did Japanese serfdom have higher status than English counterpart?",
+  "gt_answer": "yes",
+  "gt_solution": "Serfs in Medieval England were peasants that were indentured servants to their lords.\nSerfs were often harshly treated and had little legal redress against the actions of their lords.\nJapanese serfs were farmers and fishermen.\nJapanese believed that serfs produced food, which was depended on by all classes, therefore, they worked harder.",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "Serfs in Medieval England were peasants that were indentured servants to their lords.",
+    "Serfs were often harshly treated and had little legal redress against the actions of their lords.",
+    "Japanese serfs were farmers and fishermen.",
+    "Japanese believed that serfs produced food, which was depended on by all classes, therefore, they worked harder."
+  ],
+  "decomposition": [
+    "How did English lords treat their serfs?",
+    "What did the Japanese recognize serfs as?",
+    "Is #2 higher in importance than #1?"
+  ]
+}

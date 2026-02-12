@@ -1,0 +1,19 @@
+{
+  "problem": "Are moose used for work near the kingdom of Arendelle?",
+  "gt_answer": "yes",
+  "gt_solution": "The opening scene of Disney's Frozen shows a group of ice breakers.\nThey have moose that carry the heavy ice blocks.\nOne of them, Kristoff, becomes separated with his moose Sven.\nWhen Queen Elsa flees Arendelle and Princess Anna gives chase, she quickly encounters Kristoff.",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "The opening scene of Disney's Frozen shows a group of ice breakers.",
+    "They have moose that carry the heavy ice blocks.",
+    "One of them, Kristoff, becomes separated with his moose Sven.",
+    "When Queen Elsa flees Arendelle and Princess Anna gives chase, she quickly encounters Kristoff."
+  ],
+  "decomposition": [
+    "What show is the kingdom of Arendelle from?",
+    "In the opening scene of #1, what are a group of men doing?",
+    "Are moose used to carry #2?"
+  ]
+}

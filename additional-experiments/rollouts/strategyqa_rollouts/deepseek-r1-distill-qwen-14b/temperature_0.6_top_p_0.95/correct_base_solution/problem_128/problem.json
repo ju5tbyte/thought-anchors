@@ -1,0 +1,17 @@
+{
+  "problem": "In American society, will a bachelor's degree often include a leap year?",
+  "gt_answer": "yes",
+  "gt_solution": "Leap years occur every four years.\nIn American society, a bachelor's degree takes about four years.",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "Leap years occur every four years.",
+    "In American society, a bachelor's degree takes about four years."
+  ],
+  "decomposition": [
+    "Leap years occur after how many years' interval?",
+    "How many years does an average bachelor's degree take in the US?",
+    "Is #2 divided by #1 greater than or equal to one?"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "problem": "Would you take a photo of a Saltwater crocodile in Memphis?",
+  "gt_answer": "no",
+  "gt_solution": "The saltwater crocodile is native to saltwater habitats and brackish wetlands from India's east coast across Southeast Asia and the Sundaic region to northern Australia and Micronesia.\nMemphis is a city in the United States.",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "The saltwater crocodile is native to saltwater habitats and brackish wetlands from India's east coast across Southeast Asia and the Sundaic region to northern Australia and Micronesia.",
+    "Memphis is a city in the United States."
+  ],
+  "decomposition": [
+    "Where can saltwater crocodiles be found?",
+    "Is Memphis located in any of #1?"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "problem": "Would the Titanic be well preserved at the bottom of the Gulf of Finland?",
+  "gt_answer": "yes",
+  "gt_solution": "The bottom of the gulf is one of the world's largest ship cemeteries. Because of the low salinity and cold waters, and no shipworms, the ships are relatively well preserved.\nRMS Titanic was a British passenger ship.",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "The bottom of the gulf is one of the world's largest ship cemeteries. Because of the low salinity and cold waters, and no shipworms, the ships are relatively well preserved.",
+    "RMS Titanic was a British passenger ship."
+  ],
+  "decomposition": [
+    "Are ships well-preserved in the Gulf of Finland?",
+    "Was the RMS Titanic a ship?",
+    "Is both #1 and #2 \"yes\""
+  ]
+}

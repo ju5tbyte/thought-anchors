@@ -1,0 +1,18 @@
+{
+  "problem": "Do some home remedies result in your skin color turning blue?",
+  "gt_answer": "yes",
+  "gt_solution": "Colloidal silver is a popular alternative treatment/home remedy that is used by some people.\nIngestion of colloidal silver in high amounts can tint the skin blue.",
+  "level": "",
+  "type": "strategyqa",
+  "dataset": "strategyqa",
+  "facts": [
+    "Colloidal silver is a popular alternative treatment/home remedy that is used by some people.",
+    "Ingestion of colloidal silver in high amounts can tint the skin blue."
+  ],
+  "decomposition": [
+    "What can cause skin color to change?",
+    "Of #1, what changes can be caused by ingestion of something?",
+    "Of #2, what causes skin color to become blue?",
+    "Is #3 used in home remedies?"
+  ]
+}
