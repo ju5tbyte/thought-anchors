@@ -51,37 +51,25 @@ This annotation will be used to build a dependency graph and perform causal anal
 
 ### Function Tags (you may assign multiple per chunk if appropriate):
 
-1. `problem_setup`:
-    Parsing or rephrasing the yes/no question (initial reading or comprehension).
-
-2. `fact_retrieval`:
-    Recalling specific factual knowledge needed to answer (without immediate deduction).
-
-3. `logical_deduction`:
-    Deriving a conclusion from retrieved facts or prior reasoning steps toward the yes/no answer.
-
-4. `uncertainty_management`:
-    Expressing confusion, re-evaluating, reconsidering, or backtracking on a prior step.
-
-5. `result_consolidation`:
-    Aggregating or synthesizing multiple reasoning steps before emitting the final answer.
-
-6. `final_answer_emission`:
-    The explicit yes/no answer — either the <answer> tag itself or an immediately preceding statement that directly names the answer.
-
-7. `self_checking`:
-    Verifying or re-confirming a previous reasoning step or factual claim.
-
-8. `unknown`:
-    Use only if the chunk does not fit any of the above tags or is purely stylistic.
+1. `question_parsing`: Parsing, rephrasing, or decomposing the yes/no question into sub-questions or identifying what needs to be determined (initial reading or comprehension).
+2. `plan_generation`: Stating or deciding on a plan of action, identifying what knowledge is needed, or outlining the reasoning strategy (meta-reasoning).
+3. `fact_retrieval`: Recalling commonsense knowledge, world knowledge, definitions, cultural references, or factual details relevant to the question (without performing inference or judgment).
+4. `inferential_reasoning`: Drawing inferences, making logical connections between retrieved facts, performing comparisons, temporal/spatial/quantitative reasoning, or bridging multiple pieces of knowledge to reach an intermediate conclusion.
+5. `result_consolidation`: Aggregating intermediate conclusions, synthesizing findings from multiple reasoning threads, or preparing the final yes/no judgment.
+6. `uncertainty_management`: Expressing confusion, hedging, considering alternative interpretations of the question, re-evaluating earlier reasoning, or backtracking from a prior conclusion.
+7. `final_answer_emission`: Explicit statement of the final yes/no answer, or chunks that contain the definitive conclusion leading directly to the answer.
+8. `self_checking`: Verifying or sanity-checking a previous inference, cross-referencing facts, or re-confirming an intermediate conclusion.
+9. `hypothetical_exploration`: Exploring "what if" scenarios, considering edge cases, or reasoning about alternative possibilities to stress-test the conclusion.
+10. `unknown`: Use only if the chunk does not fit any of the above tags or is purely stylistic, filler, or semantically empty.
 
 ---
 
 ### depends_on Instructions:
 
-For each chunk, include a list of earlier chunk indices that the reasoning in this chunk *uses*. For example:
-- If Chunk 9 deduces a conclusion based on facts recalled in Chunks 4 and 5, then `depends_on: [4, 5]`
-- If Chunk 12 verifies a claim from Chunk 10, then `depends_on: [10]`
+For each chunk, include a list of earlier chunk indices that the reasoning in this chunk uses. For example:
+- If Chunk 7 draws an inference based on facts retrieved in Chunk 3 and Chunk 5, then `depends_on: [3, 5]`
+- If Chunk 15 consolidates conclusions from Chunk 10 and Chunk 13, then `depends_on: [10, 13]`
+- If Chunk 20 re-evaluates an earlier inference from Chunk 12, then `depends_on: [12]`
 - If there's no clear dependency (e.g. a general recall), use an empty list: `[]`
 
 Important Notes:
@@ -89,7 +77,7 @@ Important Notes:
 - Include both long-range and short-range dependencies.
 - Do NOT forget about long-range dependencies.
 - Try to be as comprehensive as possible.
-- Make sure there is always a path from earlier chunks (e.g. problem_setup and/or fact_retrieval) to the final answer.
+- Make sure there is always a path from earlier chunks (e.g. question_parsing and/or fact_retrieval) to the final answer.
 
 ---
 
@@ -105,21 +93,37 @@ Here's the expected format:
 
 ```language=json
 {{
-    "4": {{
-    "function_tags": ["fact_retrieval"],
-    "depends_on": []
+    "0": {{
+        "function_tags": ["question_parsing"],
+        "depends_on": []
+    }},
+    "1": {{
+        "function_tags": ["plan_generation"],
+        "depends_on": ["0"]
+    }},
+    "3": {{
+        "function_tags": ["fact_retrieval"],
+        "depends_on": []
     }},
     "5": {{
-    "function_tags": ["logical_deduction"],
-    "depends_on": ["4"]
+        "function_tags": ["fact_retrieval"],
+        "depends_on": []
     }},
-    "9": {{
-    "function_tags": ["result_consolidation"],
-    "depends_on": ["4", "5"]
+    "7": {{
+        "function_tags": ["inferential_reasoning"],
+        "depends_on": ["3", "5"]
     }},
-    "10": {{
-    "function_tags": ["final_answer_emission"],
-    "depends_on": ["9"]
+    "12": {{
+        "function_tags": ["uncertainty_management"],
+        "depends_on": ["7"]
+    }},
+    "15": {{
+        "function_tags": ["result_consolidation"],
+        "depends_on": ["7", "12"]
+    }},
+    "16": {{
+        "function_tags": ["final_answer_emission"],
+        "depends_on": ["15"]
     }}
 }}
 ```
